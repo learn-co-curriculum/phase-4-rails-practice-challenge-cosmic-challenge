@@ -1,0 +1,2 @@
+class ScientistsController < ApplicationController
+end

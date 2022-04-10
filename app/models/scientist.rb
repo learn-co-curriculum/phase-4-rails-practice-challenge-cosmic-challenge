@@ -1,0 +1,2 @@
+class Scientist < ApplicationRecord
+end
