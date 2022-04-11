@@ -1,9 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Planet, type: :model do
-<<<<<<< HEAD
-  pending "add some examples to (or delete) #{__FILE__}"
-=======
   
   describe "relationships" do
 
@@ -24,5 +21,4 @@ RSpec.describe Planet, type: :model do
 
   end
 
->>>>>>> main
 end

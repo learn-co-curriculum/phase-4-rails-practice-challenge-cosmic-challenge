@@ -1,9 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Mission, type: :model do
-<<<<<<< HEAD
-  pending "add some examples to (or delete) #{__FILE__}"
-=======
   
   let(:scientist) {Scientist.create(name: "Mel T. Valent", field_of_study: "xenobiology", avatar: "https://robohash.org/mel_t_valent?set=set5")}
   let(:planet) {Planet.create(name: "TauCeti E", distance_from_earth: "12 light years", nearest_star: "TauCeti", image: "planet3")}
@@ -48,5 +45,4 @@ RSpec.describe Mission, type: :model do
 
   end
 
->>>>>>> main
 end

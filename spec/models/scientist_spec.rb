@@ -1,9 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Scientist, type: :model do
-<<<<<<< HEAD
-  pending "add some examples to (or delete) #{__FILE__}"
-=======
   describe "relationships" do
 
     let(:scientist) {Scientist.create(name: "Mel T. Valent", field_of_study: "xenobiology", avatar: "https://robohash.org/mel_t_valent?set=set5")}
@@ -41,5 +38,4 @@ RSpec.describe Scientist, type: :model do
 
     
   end
->>>>>>> main
 end
