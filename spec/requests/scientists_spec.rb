@@ -140,4 +140,100 @@ RSpec.describe "Scientists", type: :request do
     end
 
   end
+
+  describe "PATCH /scientists" do
+
+    context 'with valid data' do
+      let!(:scientist_params) {{name: "Bevan T'Horizon", field_of_study: "warp drive tech", avatar: "https://robohash.org/bevan_thorizon?set=set5"}}
+
+      it 'returns the associated Scientist data' do
+        patch "/scientists/#{Scientist.second.id}", params: scientist_params
+        expect(response.body).to include_json({
+          id: a_kind_of(Integer),
+          name: "Bevan T'Horizon", 
+          field_of_study: "warp drive tech", 
+          avatar: "https://robohash.org/bevan_thorizon?set=set5"
+        })
+      end
+
+      it 'returns a status code of 202 (accpeted)' do
+        patch "/scientists/#{Scientist.second.id}", params: scientist_params
+
+        expect(response).to have_http_status(:accpeted)
+      end
+    end
+
+    context 'with invalid data' do
+      let!(:scientist_params) {{name: "P. Legrange", field_of_study: ""}}
+
+      it 'returns the error messages' do
+        patch "/scientists/#{Scientist.second.id}", params: scientist_params
+  
+        expect(response.body).to include_json({
+          errors: a_kind_of(Array)
+        })
+      end
+  
+      it 'returns a status code of 422 (Unprocessable Entity)' do
+        post "/scientists/#{Scientist.second.id}", params: scientist_params
+  
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+
+
+    end
+
+    context 'with invalid ID' do
+      let!(:scientist_params) {{name: "Bevan T'Horizon", field_of_study: "warp drive tech", avatar: "https://robohash.org/bevan_thorizon?set=set5"}}
+
+      it 'returns the error message' do
+        patch "/scientists/bad_id", params: scientist_params
+        expect(response.body).to include_json({
+          error: "Scientist not found"
+        })
+      end
+
+      it "returns the appropriate HTTP status code" do
+        patch "/scientists/bad_id", params: scientist_params
+        expect(response).to have_http_status(:not_found)
+      end
+
+    end
+
+  end
+
+  describe "DELETE /scientists/:id" do
+
+    context "with a valid ID" do
+
+      it "deletes the Scientist" do
+        expect { delete "/scientists/#{Scientist.first.id}" }.to change(Scientist, :count).by(-1)
+      end
+
+      it "deletes the associated Missions" do
+        count = Scientist.first.missions.count
+        expect { delete "/scientists/#{Scientist.first.id}" }.to change(Mission, :count).by(-count)
+      end
+
+    end
+
+    context "with an invalid ID" do
+      
+      it "returns an error message" do
+        delete "/scientists/bad_id"
+
+        expect(response.body).to include_json({
+          error: "Scientist not found"
+        })
+      end
+      
+      it "returns the appropriate HTTP status code" do
+        delete "/scientists/bad_id"
+
+        expect(response).to have_http_status(:not_found)
+      end
+
+    end
+
+  end
 end

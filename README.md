@@ -187,11 +187,22 @@ This route should update an existing `Scientist`. It should accept an object wit
 following properties in the body of the request:
 
 ```json
+{
+    "name": "Bevan T'Horizon", 
+    "field_of_study": "warp drive tech", 
+    "avatar": "https://robohash.org/bevan_thorizon?set=set5"
+}
 ```
 If the `Scientist` is updated successfully, send back a response with the updated
-`Scientist`:
+`Scientist` and a 202 `:accepted` status code:
 
 ```json
+{
+    "id": 2,
+    "name": "Bevan T'Horizon", 
+    "field_of_study": "warp drive tech", 
+    "avatar": "https://robohash.org/bevan_thorizon?set=set5"
+}
 ```
 If the `Scientist` is **not** updated successfully, return the following JSON data,
 along with the appropriate HTTP status code:
@@ -199,6 +210,12 @@ along with the appropriate HTTP status code:
 ```json
 {
   "errors": ["validation errors"]
+}
+```
+OR, given an invalid ID, the appropriate HTTP status code, and the following JSON:
+```json
+{
+  "error": "Scientist not found"
 }
 ```
 
