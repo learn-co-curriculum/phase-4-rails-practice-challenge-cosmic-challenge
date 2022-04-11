@@ -266,11 +266,22 @@ This route should create a new `Missions`. It should accept an object with the
 following properties in the body of the request:
 
 ```json
+{
+    "name": "Project Terraform", 
+    "scientist_id": 1, 
+    "planet_id": 2
+}
 ```
-If the `Mission` is created successfully, send back a response with the new
-`Mission`:
+If the `Mission` is created successfully, send back a response with the `planet` associated with the new `Mission`:
 
 ```json
+{
+    "id": 2,
+    "name": "Maxxor", 
+    "distance_from_earth": "9 parsecs", 
+    "nearest_star": "Canus Minor", 
+    "image": "planet7"
+}
 ```
 If the `Mission` is **not** created successfully, return the following JSON data,
 along with the appropriate HTTP status code:
