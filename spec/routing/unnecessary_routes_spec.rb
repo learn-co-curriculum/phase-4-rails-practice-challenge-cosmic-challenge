@@ -2,11 +2,6 @@ require 'rails_helper'
 
 RSpec.describe "UnnecessaryRoutes", type: :routing do
   
-  it "does not define unnecessary scientists routes" do
-    expect(new: "/campers/1").not_to be_routable
-    expect(edit: "/campers/1").not_to be_routable
-  end
-  
   it "does not define unnecessary planets routes" do
     expect(post: "/planets").not_to be_routable
     expect(get: "/planets/1").not_to be_routable
