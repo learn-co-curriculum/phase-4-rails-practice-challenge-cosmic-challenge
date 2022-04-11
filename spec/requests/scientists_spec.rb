@@ -119,24 +119,25 @@ RSpec.describe "Scientists", type: :request do
 
     context 'with invalid data' do
       let!(:scientist_params) {{name: "P. Legrange"}}
-    end
 
-    it 'does not creates a new Scientist' do
-      expect { post '/scientists', params: scientist_params}.to change(Scientist, :count).by(0)
-    end
+      it 'does not creates a new Scientist' do
+        expect { post '/scientists', params: scientist_params}.to change(Scientist, :count).by(0)
+      end
+  
+      it 'returns the error messages' do
+        post '/scientists', params: scientist_params
+  
+        expect(response.body).to include_json({
+          errors: a_kind_of(Array)
+        })
+      end
 
-    it 'returns the error messages' do
-      post '/scientists', params: scientist_params
+      it 'returns a status code of 422 (Unprocessable Entity)' do
+        post '/scientists', params: scientist_params
+  
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
 
-      expect(response.body).to include_json({
-        errors: a_kind_of(Array)
-      })
-    end
-
-    it 'returns a status code of 422 (Unprocessable Entity)' do
-      post '/scientists', params: scientist_params
-
-      expect(response).to have_http_status(:unprocessable_entity)
     end
 
   end
@@ -156,10 +157,10 @@ RSpec.describe "Scientists", type: :request do
         })
       end
 
-      it 'returns a status code of 202 (accpeted)' do
+      it 'returns a status code of 202 (accepted)' do
         patch "/scientists/#{Scientist.second.id}", params: scientist_params
 
-        expect(response).to have_http_status(:accpeted)
+        expect(response).to have_http_status(:accepted)
       end
     end
 
@@ -175,7 +176,7 @@ RSpec.describe "Scientists", type: :request do
       end
   
       it 'returns a status code of 422 (Unprocessable Entity)' do
-        post "/scientists/#{Scientist.second.id}", params: scientist_params
+        patch "/scientists/#{Scientist.second.id}", params: scientist_params
   
         expect(response).to have_http_status(:unprocessable_entity)
       end
