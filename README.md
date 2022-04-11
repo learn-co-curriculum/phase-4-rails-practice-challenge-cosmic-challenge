@@ -82,8 +82,7 @@ Add validations to the `Scientist` model:
 Add validations to the `Mission` model:
 
 - must have a `name`, a `scientist` and a `planet`
-- `name`s must be unique
-- a `scientist` cannot join the same `mission` more than once
+- a `scientist` cannot join the same `mission` twice
 
 ## Routes
 
@@ -96,7 +95,20 @@ response in this format, without any additional nested data related to each
 scientist.
 
 ```json
-
+[
+    {
+        "id": 1,
+        "name": "Mel T. Valent", 
+        "field_of_study": "xenobiology", 
+        "avatar": "https://robohash.org/mel_t_valent?set=set5"
+    },
+    {
+        "id": 2,
+        "name": "P. Legrange", 
+        "field_of_study": "orbital mechanics", 
+        "avatar": "https://robohash.org/p_legrange?set=set5"
+    }
+]
 ```
 
 ### GET /scientists/:id
@@ -106,6 +118,28 @@ need to serialize the data for this response differently than for the
 scientist.
 
 ```json
+{
+    "id": 1,
+    "name": "Mel T. Valent", 
+    "field_of_study": "xenobiology", 
+    "avatar": "https://robohash.org/mel_t_valent?set=set5",
+    "planets": [
+        {
+            "id": 1,
+            "name": "TauCeti E", 
+            "distance_from_earth": "12 light years", 
+            "nearest_star": "TauCeti", 
+            "image": "planet3"
+        },
+        {
+            "id": 2,
+            "name": "Maxxor",
+            "distance_from_earth": "9 parsecs", 
+            "nearest_star": "Canus Minor", 
+            "image": "planet7"
+        }
+    ]
+}
 ```
 If the `Scientist` does not exist, return the following JSON data, along with
 the appropriate HTTP status code:
@@ -122,11 +156,22 @@ This route should create a new `Scientist`. It should accept an object with the
 following properties in the body of the request:
 
 ```json
+{
+    "name": "Evan T'Horizon", 
+    "field_of_study": "astronavigation", 
+    "avatar": "https://robohash.org/evan_thorizon?set=set5"
+}
 ```
 If the `Scientist` is created successfully, send back a response with the new
 `Scientist`:
 
 ```json
+{
+    "id": 3,
+    "name": "Evan T'Horizon", 
+    "field_of_study": "astronavigation", 
+    "avatar": "https://robohash.org/evan_thorizon?set=set5"
+}
 ```
 If the `Scientist` is **not** created successfully, return the following JSON data,
 along with the appropriate HTTP status code:
@@ -142,11 +187,22 @@ This route should update an existing `Scientist`. It should accept an object wit
 following properties in the body of the request:
 
 ```json
+{
+    "name": "Bevan T'Horizon", 
+    "field_of_study": "warp drive tech", 
+    "avatar": "https://robohash.org/bevan_thorizon?set=set5"
+}
 ```
 If the `Scientist` is updated successfully, send back a response with the updated
-`Scientist`:
+`Scientist` and a 202 `:accepted` status code:
 
 ```json
+{
+    "id": 2,
+    "name": "Bevan T'Horizon", 
+    "field_of_study": "warp drive tech", 
+    "avatar": "https://robohash.org/bevan_thorizon?set=set5"
+}
 ```
 If the `Scientist` is **not** updated successfully, return the following JSON data,
 along with the appropriate HTTP status code:
@@ -154,6 +210,12 @@ along with the appropriate HTTP status code:
 ```json
 {
   "errors": ["validation errors"]
+}
+```
+OR, given an invalid ID, the appropriate HTTP status code, and the following JSON:
+```json
+{
+  "error": "Scientist not found"
 }
 ```
 
@@ -181,7 +243,22 @@ response in this format, without any additional nested data related to each
 planet.
 
 ```json
-
+[
+    {
+        "id": 1,
+        "name": "TauCeti E", 
+        "distance_from_earth": "12 light years", 
+        "nearest_star": "TauCeti", 
+        "image": "planet3"
+    },
+    {
+        "id": 2,
+        "name": "Maxxor", 
+        "distance_from_earth": "9 parsecs", 
+        "nearest_star": "Canus Minor", 
+        "image": "planet7"
+    }
+]
 ```
 
 ### POST /missions
@@ -189,11 +266,22 @@ This route should create a new `Missions`. It should accept an object with the
 following properties in the body of the request:
 
 ```json
+{
+    "name": "Project Terraform", 
+    "scientist_id": 1, 
+    "planet_id": 2
+}
 ```
-If the `Mission` is created successfully, send back a response with the new
-`Mission`:
+If the `Mission` is created successfully, send back a response with the `planet` associated with the new `Mission`:
 
 ```json
+{
+    "id": 2,
+    "name": "Maxxor", 
+    "distance_from_earth": "9 parsecs", 
+    "nearest_star": "Canus Minor", 
+    "image": "planet7"
+}
 ```
 If the `Mission` is **not** created successfully, return the following JSON data,
 along with the appropriate HTTP status code:
