@@ -243,7 +243,22 @@ response in this format, without any additional nested data related to each
 planet.
 
 ```json
-
+[
+    {
+        "id": 1,
+        "name": "TauCeti E", 
+        "distance_from_earth": "12 light years", 
+        "nearest_star": "TauCeti", 
+        "image": "planet3"
+    },
+    {
+        "id": 2,
+        "name": "Maxxor", 
+        "distance_from_earth": "9 parsecs", 
+        "nearest_star": "Canus Minor", 
+        "image": "planet7"
+    }
+]
 ```
 
 ### POST /missions
