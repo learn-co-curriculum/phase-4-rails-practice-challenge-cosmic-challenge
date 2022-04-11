@@ -156,11 +156,22 @@ This route should create a new `Scientist`. It should accept an object with the
 following properties in the body of the request:
 
 ```json
+{
+    "name": "Evan T'Horizon", 
+    "field_of_study": "astronavigation", 
+    "avatar": "https://robohash.org/evan_thorizon?set=set5"
+}
 ```
 If the `Scientist` is created successfully, send back a response with the new
 `Scientist`:
 
 ```json
+{
+    "id": 3,
+    "name": "Evan T'Horizon", 
+    "field_of_study": "astronavigation", 
+    "avatar": "https://robohash.org/evan_thorizon?set=set5"
+}
 ```
 If the `Scientist` is **not** created successfully, return the following JSON data,
 along with the appropriate HTTP status code:

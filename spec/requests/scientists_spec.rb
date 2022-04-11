@@ -87,7 +87,57 @@ RSpec.describe "Scientists", type: :request do
         get "/scientists/bad_id"
         expect(response).to have_http_status(:not_found)
       end
-      
+
     end
+  end
+
+  describe "POST /scientists" do
+
+    context 'with valid data' do
+      let!(:scientist_params) {{name: "Evan T'Horizon", field_of_study: "astronavigation", avatar: "https://robohash.org/evan_thorizon?set=set5"}}
+
+      it 'creates a new Scientist' do
+        expect { post '/scientists', params: scientist_params}.to change(Scientist, :count).by(1)
+      end
+
+      it 'returns the associated Scientist data' do
+        post '/scientists', params: scientist_params
+        expect(response.body).to include_json({
+          id: a_kind_of(Integer),
+          name: "Evan T'Horizon", 
+          field_of_study: "astronavigation", 
+          avatar: "https://robohash.org/evan_thorizon?set=set5"
+        })
+      end
+
+      it 'returns a status code of 201 (created)' do
+        post '/scientists', params: scientist_params
+
+        expect(response).to have_http_status(:created)
+      end
+    end
+
+    context 'with invalid data' do
+      let!(:scientist_params) {{name: "P. Legrange"}}
+    end
+
+    it 'does not creates a new Scientist' do
+      expect { post '/scientists', params: scientist_params}.to change(Scientist, :count).by(0)
+    end
+
+    it 'returns the error messages' do
+      post '/scientists', params: scientist_params
+
+      expect(response.body).to include_json({
+        errors: a_kind_of(Array)
+      })
+    end
+
+    it 'returns a status code of 422 (Unprocessable Entity)' do
+      post '/scientists', params: scientist_params
+
+      expect(response).to have_http_status(:unprocessable_entity)
+    end
+
   end
 end
