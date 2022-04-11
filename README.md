@@ -82,8 +82,7 @@ Add validations to the `Scientist` model:
 Add validations to the `Mission` model:
 
 - must have a `name`, a `scientist` and a `planet`
-- `name`s must be unique
-- a `scientist` cannot join the same `mission` more than once
+- a `scientist` cannot join the same `mission` twice
 
 ## Routes
 
@@ -96,7 +95,20 @@ response in this format, without any additional nested data related to each
 scientist.
 
 ```json
-
+[
+    {
+        "id": 1,
+        "name": "Mel T. Valent", 
+        "field_of_study": "xenobiology", 
+        "avatar": "https://robohash.org/mel_t_valent?set=set5"
+    },
+    {
+        "id": 2,
+        "name": "P. Legrange", 
+        "field_of_study": "orbital mechanics", 
+        "avatar": "https://robohash.org/p_legrange?set=set5"
+    }
+]
 ```
 
 ### GET /scientists/:id
@@ -106,6 +118,28 @@ need to serialize the data for this response differently than for the
 scientist.
 
 ```json
+{
+    "id": 1,
+    "name": "Mel T. Valent", 
+    "field_of_study": "xenobiology", 
+    "avatar": "https://robohash.org/mel_t_valent?set=set5",
+    "planets": [
+        {
+            "id": 1,
+            "name": "TauCeti E", 
+            "distance_from_earth": "12 light years", 
+            "nearest_star": "TauCeti", 
+            "image": "planet3"
+        },
+        {
+            "id": 2,
+            "name": "Maxxor",
+            "distance_from_earth": "9 parsecs", 
+            "nearest_star": "Canus Minor", 
+            "image": "planet7"
+        }
+    ]
+}
 ```
 If the `Scientist` does not exist, return the following JSON data, along with
 the appropriate HTTP status code:
