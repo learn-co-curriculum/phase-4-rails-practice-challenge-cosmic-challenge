@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { Routes, Route, Link, useParams, useLocation } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import PlanetCard from './PlanetCard'
 import AddMission from './AddMission'
 import ScientistForm from './ScientistForm'
