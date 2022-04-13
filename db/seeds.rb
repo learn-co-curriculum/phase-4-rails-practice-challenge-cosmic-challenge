@@ -19,7 +19,7 @@ Faker::TvShows::Buffy.unique.clear
                         image: "planet#{rand(1..10)}")}
 
 15.times {Scientist.create(name: Faker::FunnyName.name,
-                           field_of_study: Faker::Educator.subject
+                           field_of_study: Faker::Educator.subject,
                            avatar: Faker::Avatar.image(set: "set5"))}
 
 20.times {Mission.create(name: Faker::TvShows::Buffy.unique.episode,
