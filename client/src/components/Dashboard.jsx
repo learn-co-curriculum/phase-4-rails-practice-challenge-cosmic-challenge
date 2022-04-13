@@ -1,6 +1,7 @@
-import React, {useState, useEffect} from 'react'
+import React, {Suspense, useState, useEffect} from 'react'
 import ScientistCard from './ScientistCard'
 import ScientistForm from './ScientistForm'
+import GridLoader from 'react-spinners/GridLoader'
 
 function Dashboard() {
 
@@ -34,11 +35,13 @@ function Dashboard() {
   
   return (
     <div>
-      <h2>Scientists</h2>
-      <div className="sciList">
-        {sciCards}
+      <Suspense fallback={<GridLoader />}>
+        <h2>Scientists</h2>
+        <div className="sciList">
+          {sciCards}
 
-      </div>
+        </div>
+      </Suspense>
       <hr />
       <ScientistForm onScientistRequest={handleAddScientist} edit={false} />
     </div>

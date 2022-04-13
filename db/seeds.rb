@@ -23,7 +23,7 @@ puts "Making planets..."
 puts "Making scientists..."                        
 15.times {Scientist.create(name: Faker::FunnyName.name,
                            field_of_study: Faker::Educator.subject,
-                           avatar: Faker::Avatar.image(size: "200x200", set: "set5"))}
+                           avatar: Faker::Avatar.image(size: "200x200", set: "set3"))}
 
 puts "Making missions..."                           
 20.times {Mission.create(name: Faker::TvShows::Buffy.unique.episode,
