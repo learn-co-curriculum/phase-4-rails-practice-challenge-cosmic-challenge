@@ -52,7 +52,7 @@ function AddMission({ onAddPlanet, scientistId}) {
             setErrors([])
         } else {
             const messages = res.json()
-            setErrors(messages)
+            setErrors(messages.errors)
         }
     }
     
