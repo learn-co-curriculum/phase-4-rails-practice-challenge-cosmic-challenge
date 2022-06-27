@@ -87,41 +87,52 @@ export default function ScientistForm(
 
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h2>{scientist.name ? "Edit Scientist": "Add New Scientist"}</h2>
-            <div>
-                <label htmlFor="name">Name:</label>
-                <input
-                type="text"
-                id="name"
-                value={formData.name}
-                onChange={handleChange}
-                />
-            </div>
-            <div>
-                <label htmlFor="field_of_study">Field of Study:</label>
-                <input
-                type="text"
-                id="field_of_study"
-                value={formData.field_of_study}
-                onChange={handleChange}
-                />
-            </div>
-            <div>
-                <label htmlFor="avatar">Avatar:</label>
-                <input
-                type="text"
-                id="avatar"
-                value={formData.avatar}
-                onChange={handleChange}
-                />
-            </div>
-            {errors.map((err) => (
-                <p key={err} style={{ color: "red" }}>
-                {err}
-                </p>
-            ))}
-            <button type="submit">Submit</button>
-        </form>
+        <section>
+            <form onSubmit={handleSubmit}>
+                <h2>{scientist.name ? "Edit Scientist": "Add New Scientist"}</h2>
+                <div>
+                    <label htmlFor="name">Name:</label>
+                </div>
+                <div>
+                    <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="field_of_study">Field of Study:</label>
+                </div>
+                <div>
+                    <input
+                    type="text"
+                    id="field_of_study"
+                    placeholder="Enter field of study"
+                    value={formData.field_of_study}
+                    onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="avatar">Avatar:</label>
+                </div>
+                <div>
+                    <input
+                    type="text"
+                    id="avatar"
+                    placeholder="Enter path to avatar img"
+                    value={formData.avatar}
+                    onChange={handleChange}
+                    />
+                </div>
+                {errors.map((err) => (
+                    <p key={err} style={{ color: "red" }}>
+                    {err}
+                    </p>
+                ))}
+                <button type="submit">Submit</button>
+            </form>
+        </section>
     )
 }

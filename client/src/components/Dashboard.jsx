@@ -34,9 +34,9 @@ function Dashboard() {
   let sciCards = scientists.map(sci => <ScientistCard key={sci.id} scientist={sci} onDelete={handleDeleteScientist}/>)
   
   return (
-    <div>
+  <>
       <Suspense fallback={<GridLoader />}>
-        <h2>Scientists</h2>
+        <h1>Scientists</h1>
         <div className="sciList">
           {sciCards}
 
@@ -44,7 +44,7 @@ function Dashboard() {
       </Suspense>
       <hr />
       <ScientistForm onScientistRequest={handleAddScientist} edit={false} />
-    </div>
+    </>
   )
 }
 

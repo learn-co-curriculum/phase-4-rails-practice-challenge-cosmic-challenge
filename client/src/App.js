@@ -8,14 +8,18 @@ import ScientistDetail from './components/ScientistDetail'
 
 function App() {
   return (
-    <main>
+    <div>
       <Header />
-      <Routes>
-        <Route index element={<Dashboard/>} />
-        <Route path="/scientists/:id/*" element={<ScientistDetail/>} />
-      </Routes>
-    
-    </main>
+      <main>
+        <Routes>
+          <Route index element={<Dashboard/>} />
+          <Route path="/scientists/:id/*" element={<ScientistDetail/>} />
+        </Routes>
+      </main>
+      <footer>
+      
+      </footer>
+    </div>
   );
 }
 

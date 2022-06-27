@@ -8,7 +8,7 @@ function ScientistCard({scientist: {id, name, avatar}, onDelete}) {
         <SuspenseImg src={avatar} alt={name} />
         <h3>{name}</h3>
         <Link to={`/scientists/${id}`}>View Missions</Link>
-        <button onClick={()=>onDelete(id)}>X</button>
+        <span> <button onClick={()=>onDelete(id)}><strong>X</strong></button></span>
     </div>
   )
 }
