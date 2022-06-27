@@ -44,7 +44,7 @@ Depending on your preference, you can either check your progress by:
 - Running `rspec` and seeing if your code passes the tests
 - Running the React application in the browser and interacting with the API via
   the frontend
-- Running the Rails server and using Postman to make requests
+- Running the Rails server and using Postman (or equivalent API client) to make requests
 
 ## Models
 
@@ -118,7 +118,7 @@ scientist.
 
 If the `Scientist` exists, return JSON data in the format below. **Note**: you will
 need to serialize the data for this response differently than for the
-`GET /scientists` route. Make sure to include an array of planets for each
+`GET /scientists` route. Make sure to include an array of missions for each
 scientist.
 
 ```json
