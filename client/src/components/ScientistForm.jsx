@@ -36,7 +36,7 @@ export default function ScientistForm(
             setErrors([])
         } else {
             const messages = await res.json()
-            setErrors(messages)
+            setErrors(messages.errors)
         }
     }
 
@@ -64,7 +64,7 @@ export default function ScientistForm(
             setErrors([])
         } else {
             const messages = await res.json()
-            setErrors(messages)
+            setErrors(messages.errors)
         }
     }
 
