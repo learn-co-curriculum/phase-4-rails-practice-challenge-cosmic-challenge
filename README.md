@@ -58,7 +58,7 @@ You need to create the following relationships:
 
 Start by creating the models and migrations for the following database tables:
 
-![cosmic_erd](/public/cosmic_erd.png)
+![cosmic_erd](https://curriculum-content.s3.amazonaws.com/phase-4/practice-challenge-cosmic-challenge/cosmic_erd.png)
 
 If you use a Rails generator to create the models, make sure to use the
 `--no-test-framework` flag to avoid overwriting the test files.
