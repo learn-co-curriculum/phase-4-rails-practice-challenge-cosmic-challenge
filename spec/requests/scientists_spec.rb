@@ -31,6 +31,31 @@ RSpec.describe "Scientists", type: :request do
       ])
     end
 
+    it "does not include associated planet data" do
+      get '/scientists'
+
+      expect(response.body).not_to include_json([
+        {
+          planets: [
+            {
+              id: a_kind_of(Integer),
+              name: "TauCeti E", 
+              distance_from_earth: "12 light years", 
+              nearest_star: "TauCeti", 
+              image: "planet3"
+            },
+            {
+              id: a_kind_of(Integer),
+              name: "Maxxor",
+              distance_from_earth: "9 parsecs", 
+              nearest_star: "Canus Minor", 
+              image: "planet7"
+            }
+          ]
+        }
+      ])
+    end
+
     it 'returns a status of 200 (OK)' do
       get '/scientists'
       expect(response).to have_http_status(:ok)
