@@ -37,7 +37,7 @@ RSpec.describe "Missions", type: :request do
     end
 
     context 'with invalid data' do
-      let!(:mission_params) {{name: "Operation Phoenix"}}
+      let!(:mission_params) {{name: "Operation Phoenix", scientist_id: Scientist.first.id, planet_id: Planet.first.id}}
 
       it 'does not creates a new Mission' do
         expect { post '/missions', params: mission_params}.to change(Mission, :count).by(0)

@@ -58,7 +58,7 @@ You need to create the following relationships:
 
 Start by creating the models and migrations for the following database tables:
 
-![cosmic_erd](/public/cosmic_erd.png)
+![cosmic_erd](https://curriculum-content.s3.amazonaws.com/phase-4/mock-challenge-cosmic-challenge/cosmic_erd.png)
 
 If you use a Rails generator to create the models, make sure to use the
 `--no-test-framework` flag to avoid overwriting the test files.
@@ -84,7 +84,7 @@ Add validations to the `Scientist` model:
 Add validations to the `Mission` model:
 
 - must have a `name`, a `scientist` and a `planet`
-- a `scientist` cannot join the same `mission` twice
+- a `scientist` cannot join missions to the same `planet` twice
 
 ## Routes
 
